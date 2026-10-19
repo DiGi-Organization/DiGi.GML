@@ -21,6 +21,7 @@ namespace DiGi.GML.Classes
 
         /// <summary>
         /// Retrieves a type based on the provided name from all loaded assemblies, ensuring it implements <see cref="IAbstractGML"/>.
+        /// <para>An assembly whose types cannot all be loaded, for example because one of its dependencies is missing from the host, does not fail the lookup. Its loadable types are searched, and the rest are skipped.</para>
         /// </summary>
         /// <param name="name">The name of the type to search for.</param>
         /// <param name="update">If set to <c>true</c>, the result (including null) will be cached in the internal dictionary to optimize future lookups.</param>
@@ -42,10 +43,21 @@ namespace DiGi.GML.Classes
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
             foreach (Assembly assembly in assemblies)
             {
-                Type[] types = assembly.GetTypes();
-                foreach (Type type_Temp in types)
+                // An assembly with a dependency missing from the host (e.g. System.Private.Windows.Core, which
+                // references System.Formats.Nrbf) throws from GetTypes; its loadable types are still searched
+                Type?[] types;
+                try
                 {
-                    if (!typeof(IAbstractGML).IsAssignableFrom(type_Temp))
+                    types = assembly.GetTypes();
+                }
+                catch (ReflectionTypeLoadException reflectionTypeLoadException)
+                {
+                    types = reflectionTypeLoadException.Types;
+                }
+
+                foreach (Type? type_Temp in types)
+                {
+                    if (type_Temp == null || !typeof(IAbstractGML).IsAssignableFrom(type_Temp))
                     {
                         continue;
                     }

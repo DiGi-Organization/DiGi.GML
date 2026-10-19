@@ -427,6 +427,8 @@ public TypeManager();
 
 Retrieves a type based on the provided name from all loaded assemblies, ensuring it implements [IAbstractGML](DiGi.GML.Interfaces.md#DiGi.GML.Interfaces.IAbstractGML 'DiGi\.GML\.Interfaces\.IAbstractGML')\.
 
+An assembly whose types cannot all be loaded, for example because one of its dependencies is missing from the host, does not fail the lookup. Its loadable types are searched, and the rest are skipped.
+
 ```csharp
 public System.Type? GetType(string? name, bool update=true);
 ```
