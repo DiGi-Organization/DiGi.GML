@@ -98,12 +98,8 @@ namespace DiGi.GML
             }
             else if (type_Temp == typeof(double))
             {
-                if (double.TryParse(text, NumberStyles.Any, CultureInfo.CurrentCulture, out double @double))
-                {
-                    value = nullable ? @double as double? : @double;
-                    return true;
-                }
-                else if (double.TryParse(text, NumberStyles.Any, CultureInfo.InvariantCulture, out @double))
+                // GML numbers are culture-invariant; CurrentCulture would read "5432.12" as 543212 under de-DE
+                if (double.TryParse(text, NumberStyles.Any, CultureInfo.InvariantCulture, out double @double))
                 {
                     value = nullable ? @double as double? : @double;
                     return true;

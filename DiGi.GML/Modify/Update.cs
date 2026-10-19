@@ -121,9 +121,24 @@ namespace DiGi.GML
                         {
                             if (Activator.CreateInstance(type) is IList list)
                             {
-                                foreach (XmlNode xmlNode_Temp in xmlNodes_Temp)
+                                // A wrapper may hold several items (gml:segments) or repeat once per item (gml:interior, gml:featureMember)
+                                foreach (XmlNode xmlNode_Wrapper in xmlNodes)
                                 {
-                                    list.Add(Create.AbstractGML(xmlNode_Temp));
+                                    foreach (XmlNode xmlNode_Item in xmlNode_Wrapper.ChildNodes)
+                                    {
+                                        if (xmlNode_Item is not XmlElement)
+                                        {
+                                            continue;
+                                        }
+
+                                        IAbstractGML? abstractGML_Item = Create.AbstractGML(xmlNode_Item);
+                                        if (abstractGML_Item == null)
+                                        {
+                                            continue;
+                                        }
+
+                                        list.Add(abstractGML_Item);
+                                    }
                                 }
 
                                 value = list;

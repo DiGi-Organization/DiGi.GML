@@ -3,6 +3,40 @@
 ## DiGi\.GML\.Classes Namespace
 ### Classes
 
+<a name='DiGi.GML.Classes.AbstractCurve'></a>
+
+## AbstractCurve Class
+
+Represents an abstract base class for one\-dimensional \(curve\) geometric primitives within the GML specification\.
+
+The class is deliberately not named `Curve`: the type manager binds XML element names to class names, and an abstract class cannot be instantiated for the concrete `gml:Curve` element.
+
+```csharp
+public abstract class AbstractCurve : DiGi.GML.Classes.GeometricPrimitive
+```
+
+Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') → [AbstractGML](DiGi.GML.Classes.md#DiGi.GML.Classes.AbstractGML 'DiGi\.GML\.Classes\.AbstractGML') → [GML](DiGi.GML.Classes.md#DiGi.GML.Classes.GML 'DiGi\.GML\.Classes\.GML') → [Geometry](DiGi.GML.Classes.md#DiGi.GML.Classes.Geometry 'DiGi\.GML\.Classes\.Geometry') → [GeometricPrimitive](DiGi.GML.Classes.md#DiGi.GML.Classes.GeometricPrimitive 'DiGi\.GML\.Classes\.GeometricPrimitive') → AbstractCurve
+
+Derived  
+↳ [Curve](DiGi.GML.Classes.md#DiGi.GML.Classes.Curve 'DiGi\.GML\.Classes\.Curve')
+
+<a name='DiGi.GML.Classes.AbstractCurveSegment'></a>
+
+## AbstractCurveSegment Class
+
+Represents an abstract base class for the segments of a GML Curve\.
+
+GML 3.2 curve segments carry no `gml:id`; the class derives from [AbstractGML](DiGi.GML.Classes.md#DiGi.GML.Classes.AbstractGML 'DiGi\.GML\.Classes\.AbstractGML') only because the type manager creates [IAbstractGML](DiGi.GML.Interfaces.md#DiGi.GML.Interfaces.IAbstractGML 'DiGi\.GML\.Interfaces\.IAbstractGML') types.
+
+```csharp
+public abstract class AbstractCurveSegment : DiGi.GML.Classes.AbstractGML
+```
+
+Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') → [AbstractGML](DiGi.GML.Classes.md#DiGi.GML.Classes.AbstractGML 'DiGi\.GML\.Classes\.AbstractGML') → AbstractCurveSegment
+
+Derived  
+↳ [LineStringSegment](DiGi.GML.Classes.md#DiGi.GML.Classes.LineStringSegment 'DiGi\.GML\.Classes\.LineStringSegment')
+
 <a name='DiGi.GML.Classes.AbstractFeature'></a>
 
 ## AbstractFeature Class
@@ -31,6 +65,7 @@ public abstract class AbstractGML : DiGi.GML.Interfaces.IAbstractGML, DiGi.GML.I
 Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') → AbstractGML
 
 Derived  
+↳ [AbstractCurveSegment](DiGi.GML.Classes.md#DiGi.GML.Classes.AbstractCurveSegment 'DiGi\.GML\.Classes\.AbstractCurveSegment')  
 ↳ [AbstractFeature](DiGi.GML.Classes.md#DiGi.GML.Classes.AbstractFeature 'DiGi\.GML\.Classes\.AbstractFeature')  
 ↳ [GML](DiGi.GML.Classes.md#DiGi.GML.Classes.GML 'DiGi\.GML\.Classes\.GML')
 
@@ -51,6 +86,32 @@ Implements [id](DiGi.GML.Interfaces.md#DiGi.GML.Interfaces.IAbstractGML.id 'DiGi
 
 #### Property Value
 [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+
+<a name='DiGi.GML.Classes.Curve'></a>
+
+## Curve Class
+
+Represents a GML Curve, a one\-dimensional geometric primitive composed of one or more curve segments\.
+
+```csharp
+public class Curve : DiGi.GML.Classes.AbstractCurve
+```
+
+Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') → [AbstractGML](DiGi.GML.Classes.md#DiGi.GML.Classes.AbstractGML 'DiGi\.GML\.Classes\.AbstractGML') → [GML](DiGi.GML.Classes.md#DiGi.GML.Classes.GML 'DiGi\.GML\.Classes\.GML') → [Geometry](DiGi.GML.Classes.md#DiGi.GML.Classes.Geometry 'DiGi\.GML\.Classes\.Geometry') → [GeometricPrimitive](DiGi.GML.Classes.md#DiGi.GML.Classes.GeometricPrimitive 'DiGi\.GML\.Classes\.GeometricPrimitive') → [AbstractCurve](DiGi.GML.Classes.md#DiGi.GML.Classes.AbstractCurve 'DiGi\.GML\.Classes\.AbstractCurve') → Curve
+### Properties
+
+<a name='DiGi.GML.Classes.Curve.segments'></a>
+
+## Curve\.segments Property
+
+Gets or sets the ordered list of segments that make up the curve\.
+
+```csharp
+public System.Collections.Generic.List<DiGi.GML.Classes.AbstractCurveSegment>? segments { get; set; }
+```
+
+#### Property Value
+[System\.Collections\.Generic\.List&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1 'System\.Collections\.Generic\.List\`1')[AbstractCurveSegment](DiGi.GML.Classes.md#DiGi.GML.Classes.AbstractCurveSegment 'DiGi\.GML\.Classes\.AbstractCurveSegment')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1 'System\.Collections\.Generic\.List\`1')
 
 <a name='DiGi.GML.Classes.FeatureCollection'></a>
 
@@ -91,6 +152,7 @@ public abstract class GeometricPrimitive : DiGi.GML.Classes.Geometry
 Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') → [AbstractGML](DiGi.GML.Classes.md#DiGi.GML.Classes.AbstractGML 'DiGi\.GML\.Classes\.AbstractGML') → [GML](DiGi.GML.Classes.md#DiGi.GML.Classes.GML 'DiGi\.GML\.Classes\.GML') → [Geometry](DiGi.GML.Classes.md#DiGi.GML.Classes.Geometry 'DiGi\.GML\.Classes\.Geometry') → GeometricPrimitive
 
 Derived  
+↳ [AbstractCurve](DiGi.GML.Classes.md#DiGi.GML.Classes.AbstractCurve 'DiGi\.GML\.Classes\.AbstractCurve')  
 ↳ [Point](DiGi.GML.Classes.md#DiGi.GML.Classes.Point 'DiGi\.GML\.Classes\.Point')  
 ↳ [Surface](DiGi.GML.Classes.md#DiGi.GML.Classes.Surface 'DiGi\.GML\.Classes\.Surface')
 
@@ -206,6 +268,32 @@ Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system
 ## LinearRing\.posList Property
 
 Gets or sets the list of coordinate positions that define the linear ring\.
+
+```csharp
+public System.Collections.Generic.List<double> posList { get; set; }
+```
+
+#### Property Value
+[System\.Collections\.Generic\.List&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1 'System\.Collections\.Generic\.List\`1')[System\.Double](https://learn.microsoft.com/en-us/dotnet/api/system.double 'System\.Double')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1 'System\.Collections\.Generic\.List\`1')
+
+<a name='DiGi.GML.Classes.LineStringSegment'></a>
+
+## LineStringSegment Class
+
+Represents a GML LineStringSegment, a curve segment defined by a linear sequence of points with linear interpolation between them\.
+
+```csharp
+public class LineStringSegment : DiGi.GML.Classes.AbstractCurveSegment
+```
+
+Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') → [AbstractGML](DiGi.GML.Classes.md#DiGi.GML.Classes.AbstractGML 'DiGi\.GML\.Classes\.AbstractGML') → [AbstractCurveSegment](DiGi.GML.Classes.md#DiGi.GML.Classes.AbstractCurveSegment 'DiGi\.GML\.Classes\.AbstractCurveSegment') → LineStringSegment
+### Properties
+
+<a name='DiGi.GML.Classes.LineStringSegment.posList'></a>
+
+## LineStringSegment\.posList Property
+
+Gets or sets the list of coordinate positions that define the segment\.
 
 ```csharp
 public System.Collections.Generic.List<double> posList { get; set; }
