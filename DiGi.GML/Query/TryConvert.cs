@@ -10,6 +10,7 @@ namespace DiGi.GML
     {
         /// <summary>
         /// Attempts to convert a string representation of a value to an object based on the provided property information.
+        /// <para>Conversion is culture-invariant (GML values are ISO 8601 / invariant-culture text): <c>DateTime</c> parses with <see cref="System.Globalization.CultureInfo.InvariantCulture"/>, and <c>DateTimeOffset</c> keeps the offset written in the text.</para>
         /// </summary>
         /// <param name="text">The string input to be converted.</param>
         /// <param name="propertyInfo">The property whose type determines the target conversion type.</param>
@@ -22,6 +23,7 @@ namespace DiGi.GML
 
         /// <summary>
         /// Attempts to convert a string representation of a value to an object of the specified type.
+        /// <para>Conversion is culture-invariant (GML values are ISO 8601 / invariant-culture text): <c>DateTime</c> parses with <see cref="System.Globalization.CultureInfo.InvariantCulture"/>, and <c>DateTimeOffset</c> keeps the offset written in the text. A value that does not parse returns false.</para>
         /// </summary>
         /// <param name="text">The string input to be converted.</param>
         /// <param name="type">The target type for conversion.</param>
@@ -90,9 +92,17 @@ namespace DiGi.GML
             }
             else if (type_Temp == typeof(DateTime))
             {
-                if (DateTime.TryParse(text, out DateTime dateTime))
+                if (DateTime.TryParse(text, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dateTime))
                 {
                     value = nullable ? dateTime as DateTime? : dateTime;
+                    return true;
+                }
+            }
+            else if (type_Temp == typeof(DateTimeOffset))
+            {
+                if (DateTimeOffset.TryParse(text, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTimeOffset dateTimeOffset))
+                {
+                    value = nullable ? dateTimeOffset as DateTimeOffset? : dateTimeOffset;
                     return true;
                 }
             }

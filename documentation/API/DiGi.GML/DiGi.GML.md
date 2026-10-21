@@ -195,6 +195,8 @@ Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system
 
 Updates the properties of an [IAbstractGML](DiGi.GML.Interfaces.md#DiGi.GML.Interfaces.IAbstractGML 'DiGi\.GML\.Interfaces\.IAbstractGML') instance based on the values provided in an [System\.Xml\.XmlNode](https://learn.microsoft.com/en-us/dotnet/api/system.xml.xmlnode 'System\.Xml\.XmlNode')\.
 
+A property element that is empty in every occurrence and carries an `href` attribute in the XLink namespace binds by reference: a `string` property receives the first href verbatim, a list of strings one href per occurrence in document order. References are stored unresolved; resolving them is the consumer's job. The match is on the XLink namespace URI, never on the prefix, and empty elements without an XLink `href` are skipped.
+
 ```csharp
 public static bool Update(this DiGi.GML.Interfaces.IAbstractGML abstractGML, System.Xml.XmlNode xmlNode);
 ```
@@ -400,6 +402,8 @@ A list of [System\.Reflection\.PropertyInfo](https://learn.microsoft.com/en-us/d
 
 Attempts to convert a string representation of a value to an object based on the provided property information\.
 
+Conversion is culture-invariant (GML values are ISO 8601 / invariant-culture text): `DateTime` parses with [System\.Globalization\.CultureInfo\.InvariantCulture](https://learn.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo.invariantculture 'System\.Globalization\.CultureInfo\.InvariantCulture'), and `DateTimeOffset` keeps the offset written in the text.
+
 ```csharp
 public static bool TryConvert(string? text, System.Reflection.PropertyInfo? propertyInfo, out object? value);
 ```
@@ -432,6 +436,8 @@ True if the conversion was successful; otherwise, false\.
 ## Query\.TryConvert\(string, Type, object\) Method
 
 Attempts to convert a string representation of a value to an object of the specified type\.
+
+Conversion is culture-invariant (GML values are ISO 8601 / invariant-culture text): `DateTime` parses with [System\.Globalization\.CultureInfo\.InvariantCulture](https://learn.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo.invariantculture 'System\.Globalization\.CultureInfo\.InvariantCulture'), and `DateTimeOffset` keeps the offset written in the text. A value that does not parse returns false.
 
 ```csharp
 public static bool TryConvert(string? text, System.Type? type, out object? value);

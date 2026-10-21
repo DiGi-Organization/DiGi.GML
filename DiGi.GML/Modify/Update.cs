@@ -12,6 +12,7 @@ namespace DiGi.GML
     {
         /// <summary>
         /// Updates the properties of an <see cref="IAbstractGML"/> instance based on the values provided in an <see cref="XmlNode"/>.
+        /// <para>A property element that is empty in every occurrence and carries an <c>href</c> attribute in the XLink namespace binds by reference: a <c>string</c> property receives the first href verbatim, a list of strings one href per occurrence in document order. References are stored unresolved; resolving them is the consumer's job. The match is on the XLink namespace URI, never on the prefix, and empty elements without an XLink <c>href</c> are skipped.</para>
         /// </summary>
         /// <param name="abstractGML">The GML object to be updated.</param>
         /// <param name="xmlNode">The XML node containing the source data for the update.</param>
@@ -84,6 +85,36 @@ namespace DiGi.GML
 
                 if (dictionary_XmlNodes.TryGetValue(propertyInfo.Name, out List<XmlNode> xmlNodes) && xmlNodes != null && xmlNodes.Count != 0)
                 {
+                    Type type_Property = propertyInfo.PropertyType;
+                    Type type_Property_Temp = Nullable.GetUnderlyingType(type_Property);
+                    if (type_Property_Temp != null)
+                    {
+                        type_Property = type_Property_Temp;
+                    }
+
+                    bool isString = type_Property == typeof(string);
+                    bool isStringList = type_Property == typeof(IList<string>)
+                        || (typeof(IList).IsAssignableFrom(type_Property) && type_Property.IsGenericType && type_Property.GenericTypeArguments.Length == 1 && type_Property.GenericTypeArguments[0] == typeof(string));
+
+                    if (isString || isStringList)
+                    {
+                        List<string>? hrefs = XlinkHrefs(xmlNodes);
+                        if (hrefs != null && hrefs.Count != 0)
+                        {
+                            if (isString)
+                            {
+                                propertyInfo.SetValue(abstractGML, hrefs[0]);
+                            }
+                            else
+                            {
+                                propertyInfo.SetValue(abstractGML, hrefs);
+                            }
+
+                            result = true;
+                            continue;
+                        }
+                    }
+
                     if (!xmlNodes.TrueForAll(x => x.HasChildNodes))
                     {
                         continue;
@@ -237,6 +268,39 @@ namespace DiGi.GML
 
             propertyInfo.SetValue(abstractGML_Destination, value);
             return true;
+        }
+
+        private const string XLinkNamespace = "http://www.w3.org/1999/xlink";
+
+        private static List<string>? XlinkHrefs(List<XmlNode> xmlNodes)
+        {
+            List<string> hrefs = [];
+            foreach (XmlNode xmlNode in xmlNodes)
+            {
+                if (xmlNode.HasChildNodes || xmlNode.Attributes == null)
+                {
+                    return null;
+                }
+
+                string? href = null;
+                foreach (XmlAttribute xmlAttribute in xmlNode.Attributes)
+                {
+                    if (string.Equals(xmlAttribute.LocalName, "href", StringComparison.Ordinal) && string.Equals(xmlAttribute.NamespaceURI, XLinkNamespace, StringComparison.Ordinal))
+                    {
+                        href = xmlAttribute.Value;
+                        break;
+                    }
+                }
+
+                if (href == null)
+                {
+                    return null;
+                }
+
+                hrefs.Add(href);
+            }
+
+            return hrefs;
         }
     }
 }
