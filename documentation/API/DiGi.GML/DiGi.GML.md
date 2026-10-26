@@ -354,6 +354,29 @@ The enumeration value to extract the description from\.
 [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')  
 The string value of the [System\.ComponentModel\.DescriptionAttribute](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.descriptionattribute 'System\.ComponentModel\.DescriptionAttribute') if present; otherwise, the string representation of the enum member\.
 
+<a name='DiGi.GML.Query.FeatureMembers(string)'></a>
+
+## Query\.FeatureMembers\(string\) Method
+
+Streams the feature members of a GML feature collection file one at a time, without loading the document\.
+
+Unlike [ToGML&lt;T&gt;\(string\)](DiGi.GML.md#DiGi.GML.Convert.ToGML_T_(string) 'DiGi\.GML\.Convert\.ToGML\<T\>\(string\)'), which reads the whole file into a string and then into an [System\.Xml\.XmlDocument](https://learn.microsoft.com/en-us/dotnet/api/system.xml.xmldocument 'System\.Xml\.XmlDocument') (a file of 0.7 - 1.6 GB fails with [System\.OutOfMemoryException](https://learn.microsoft.com/en-us/dotnet/api/system.outofmemoryexception 'System\.OutOfMemoryException')), only one `gml:featureMember` is held as XML at a time. Elements no assembly models are skipped.
+
+```csharp
+public static System.Collections.Generic.IEnumerable<DiGi.GML.Interfaces.IFeatureMember> FeatureMembers(string? path);
+```
+#### Parameters
+
+<a name='DiGi.GML.Query.FeatureMembers(string).path'></a>
+
+`path` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+
+The path to the GML file\.
+
+#### Returns
+[System\.Collections\.Generic\.IEnumerable&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1 'System\.Collections\.Generic\.IEnumerable\`1')[IFeatureMember](DiGi.GML.Interfaces.md#DiGi.GML.Interfaces.IFeatureMember 'DiGi\.GML\.Interfaces\.IFeatureMember')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1 'System\.Collections\.Generic\.IEnumerable\`1')  
+The feature members in document order; empty when the path is empty, the file does not exist or its root is not a `FeatureCollection`\.
+
 <a name='DiGi.GML.Query.PropertyInfoDictionary(thisDiGi.GML.Interfaces.IAbstractGML)'></a>
 
 ## Query\.PropertyInfoDictionary\(this IAbstractGML\) Method
