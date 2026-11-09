@@ -1,4 +1,4 @@
-﻿using DiGi.GML.CityGML.Interfaces;
+using DiGi.GML.CityGML.Interfaces;
 using System.Collections.Generic;
 
 namespace DiGi.GML.CityGML.Classes
@@ -11,6 +11,6 @@ namespace DiGi.GML.CityGML.Classes
         /// <summary>
         /// Gets or sets the list of city object members associated with this city model.
         /// </summary>
-        public List<IcityObjectMember> cityObjectMembers { get; set; }
+        public List<ICityObjectMember>? cityObjectMembers { get; set; }
     }
 }

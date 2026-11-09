@@ -9,7 +9,7 @@
 The repository contains the following core components and assemblies:
 * **[DiGi.GML.Test](DiGi.GML.Test)** (Path: `DiGi.GML\DiGi.GML.Test`)
 * **[DiGi.GML](DiGi.GML)** (Path: `DiGi.GML\DiGi.GML`)
-* **[DiGi.GML.CityGML](GiGi.GML.CityGML)** (Path: `DiGi.GML\GiGi.GML.CityGML`)
+* **[DiGi.GML.CityGML](DiGi.GML.CityGML)** (Path: `DiGi.GML\DiGi.GML.CityGML`)
 
 ---
 

@@ -10,12 +10,12 @@
 Represents a building object within the CityGML model, implementing city object member and abstract GML interfaces\.
 
 ```csharp
-public class Building : DiGi.GML.CityGML.Interfaces.IcityObjectMember, DiGi.GML.Interfaces.IAbstractGML, DiGi.GML.Interfaces.IFeatureMember, DiGi.GML.CityGML.Interfaces.ICityGML
+public class Building : DiGi.GML.CityGML.Interfaces.ICityObjectMember, DiGi.GML.Interfaces.IAbstractGML, DiGi.GML.Interfaces.IFeatureMember, DiGi.GML.CityGML.Interfaces.ICityGML
 ```
 
 Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') → Building
 
-Implements [IcityObjectMember](DiGi.GML.CityGML.Interfaces.md#DiGi.GML.CityGML.Interfaces.IcityObjectMember 'DiGi\.GML\.CityGML\.Interfaces\.IcityObjectMember'), [DiGi\.GML\.Interfaces\.IAbstractGML](https://learn.microsoft.com/en-us/dotnet/api/digi.gml.interfaces.iabstractgml 'DiGi\.GML\.Interfaces\.IAbstractGML'), [DiGi\.GML\.Interfaces\.IFeatureMember](https://learn.microsoft.com/en-us/dotnet/api/digi.gml.interfaces.ifeaturemember 'DiGi\.GML\.Interfaces\.IFeatureMember'), [ICityGML](DiGi.GML.CityGML.Interfaces.md#DiGi.GML.CityGML.Interfaces.ICityGML 'DiGi\.GML\.CityGML\.Interfaces\.ICityGML')
+Implements [ICityObjectMember](DiGi.GML.CityGML.Interfaces.md#DiGi.GML.CityGML.Interfaces.ICityObjectMember 'DiGi\.GML\.CityGML\.Interfaces\.ICityObjectMember'), [DiGi\.GML\.Interfaces\.IAbstractGML](https://learn.microsoft.com/en-us/dotnet/api/digi.gml.interfaces.iabstractgml 'DiGi\.GML\.Interfaces\.IAbstractGML'), [DiGi\.GML\.Interfaces\.IFeatureMember](https://learn.microsoft.com/en-us/dotnet/api/digi.gml.interfaces.ifeaturemember 'DiGi\.GML\.Interfaces\.IFeatureMember'), [ICityGML](DiGi.GML.CityGML.Interfaces.md#DiGi.GML.CityGML.Interfaces.ICityGML 'DiGi\.GML\.CityGML\.Interfaces\.ICityGML')
 ### Properties
 
 <a name='DiGi.GML.CityGML.Classes.Building.id'></a>
@@ -25,7 +25,7 @@ Implements [IcityObjectMember](DiGi.GML.CityGML.Interfaces.md#DiGi.GML.CityGML.I
 Gets or sets the unique identifier for the building\.
 
 ```csharp
-public string id { get; set; }
+public string? id { get; set; }
 ```
 
 Implements [id](https://learn.microsoft.com/en-us/dotnet/api/digi.gml.interfaces.iabstractgml.id 'DiGi\.GML\.Interfaces\.IAbstractGML\.id')
@@ -68,8 +68,8 @@ Implements [ICityGML](DiGi.GML.CityGML.Interfaces.md#DiGi.GML.CityGML.Interfaces
 Gets or sets the list of city object members associated with this city model\.
 
 ```csharp
-public System.Collections.Generic.List<DiGi.GML.CityGML.Interfaces.IcityObjectMember> cityObjectMembers { get; set; }
+public System.Collections.Generic.List<DiGi.GML.CityGML.Interfaces.ICityObjectMember>? cityObjectMembers { get; set; }
 ```
 
 #### Property Value
-[System\.Collections\.Generic\.List&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1 'System\.Collections\.Generic\.List\`1')[IcityObjectMember](DiGi.GML.CityGML.Interfaces.md#DiGi.GML.CityGML.Interfaces.IcityObjectMember 'DiGi\.GML\.CityGML\.Interfaces\.IcityObjectMember')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1 'System\.Collections\.Generic\.List\`1')
+[System\.Collections\.Generic\.List&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1 'System\.Collections\.Generic\.List\`1')[ICityObjectMember](DiGi.GML.CityGML.Interfaces.md#DiGi.GML.CityGML.Interfaces.ICityObjectMember 'DiGi\.GML\.CityGML\.Interfaces\.ICityObjectMember')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1 'System\.Collections\.Generic\.List\`1')

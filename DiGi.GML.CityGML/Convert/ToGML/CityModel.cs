@@ -11,7 +11,7 @@ namespace DiGi.GML.CityGML
         /// </summary>
         /// <param name="path">The file system path to the XML file.</param>
         /// <returns>A <see cref="CityModel"/> instance if the conversion is successful; otherwise, null.</returns>
-        public static CityModel ToGML(string path)
+        public static CityModel? ToGML(string? path)
         {
             if(string.IsNullOrWhiteSpace(path))
             {
@@ -24,7 +24,7 @@ namespace DiGi.GML.CityGML
                 return null;
             }
 
-            XmlDocument xmlDocument = new XmlDocument();
+            XmlDocument xmlDocument = new();
             xmlDocument.LoadXml(text);
 
             return ToGML(xmlDocument);
@@ -33,17 +33,17 @@ namespace DiGi.GML.CityGML
         /// <summary>
         /// Converts a CityGML stream to a <see cref="CityModel"/> object.
         /// </summary>
-        /// <param name="steam">The input stream containing the XML data.</param>
+        /// <param name="stream">The input stream containing the XML data.</param>
         /// <returns>A <see cref="CityModel"/> instance if the conversion is successful; otherwise, null.</returns>
-        public static CityModel ToGML(Stream steam)
+        public static CityModel? ToGML(Stream? stream)
         {
-            if (steam == null)
+            if (stream == null)
             {
                 return null;
             }
 
-            XmlDocument xmlDocument = new XmlDocument();
-            xmlDocument.Load(steam);
+            XmlDocument xmlDocument = new();
+            xmlDocument.Load(stream);
 
             return ToGML(xmlDocument);
         }
@@ -53,7 +53,7 @@ namespace DiGi.GML.CityGML
         /// </summary>
         /// <param name="xmlDocument">The XML document containing the GML data.</param>
         /// <returns>A <see cref="CityModel"/> instance if the conversion is successful; otherwise, null.</returns>
-        public static CityModel ToGML(XmlDocument xmlDocument)
+        public static CityModel? ToGML(XmlDocument? xmlDocument)
         {
             if (xmlDocument == null || !xmlDocument.HasChildNodes)
             {
@@ -72,11 +72,11 @@ namespace DiGi.GML.CityGML
                 return new CityModel();
             }
 
-            CityModel result = null;
+            CityModel? result = null;
 
             for (int i = 0; i < xmlNodeList.Count; i++)
             {
-                string name = xmlNodeList[i]?.LocalName;
+                string? name = xmlNodeList[i]?.LocalName;
 
                 if (string.IsNullOrWhiteSpace(name) || name == "xml")
                 {

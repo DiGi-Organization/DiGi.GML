@@ -16,16 +16,16 @@ public interface ICityGML
 Derived  
 ↳ [Building](DiGi.GML.CityGML.Classes.md#DiGi.GML.CityGML.Classes.Building 'DiGi\.GML\.CityGML\.Classes\.Building')  
 ↳ [CityModel](DiGi.GML.CityGML.Classes.md#DiGi.GML.CityGML.Classes.CityModel 'DiGi\.GML\.CityGML\.Classes\.CityModel')  
-↳ [IcityObjectMember](DiGi.GML.CityGML.Interfaces.md#DiGi.GML.CityGML.Interfaces.IcityObjectMember 'DiGi\.GML\.CityGML\.Interfaces\.IcityObjectMember')
+↳ [ICityObjectMember](DiGi.GML.CityGML.Interfaces.md#DiGi.GML.CityGML.Interfaces.ICityObjectMember 'DiGi\.GML\.CityGML\.Interfaces\.ICityObjectMember')
 
-<a name='DiGi.GML.CityGML.Interfaces.IcityObjectMember'></a>
+<a name='DiGi.GML.CityGML.Interfaces.ICityObjectMember'></a>
 
-## IcityObjectMember Interface
+## ICityObjectMember Interface
 
 Defines the interface for a city object member, inheriting from basic GML and CityGML abstractions\.
 
 ```csharp
-public interface IcityObjectMember : DiGi.GML.Interfaces.IAbstractGML, DiGi.GML.Interfaces.IFeatureMember, DiGi.GML.CityGML.Interfaces.ICityGML
+public interface ICityObjectMember : DiGi.GML.Interfaces.IAbstractGML, DiGi.GML.Interfaces.IFeatureMember, DiGi.GML.CityGML.Interfaces.ICityGML
 ```
 
 Derived  

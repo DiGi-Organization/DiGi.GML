@@ -5,6 +5,7 @@
     <File Path="Directory.Build.props" />
     <File Path="Directory.Build.targets" />
   </Folder>
+  <Project Path="DiGi.GML.CityGML/DiGi.GML.CityGML.csproj" />
   <Project Path="DiGi.GML.Test/DiGi.GML.Test.csproj" />
   <Project Path="DiGi.GML/DiGi.GML.csproj" />
 </Solution>

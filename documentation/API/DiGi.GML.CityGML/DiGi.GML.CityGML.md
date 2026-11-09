@@ -21,7 +21,7 @@ Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system
 Converts a CityGML file from the specified file path to a [CityModel](DiGi.GML.CityGML.Classes.md#DiGi.GML.CityGML.Classes.CityModel 'DiGi\.GML\.CityGML\.Classes\.CityModel') object\.
 
 ```csharp
-public static DiGi.GML.CityGML.Classes.CityModel ToGML(string path);
+public static DiGi.GML.CityGML.Classes.CityModel? ToGML(string? path);
 ```
 #### Parameters
 
@@ -42,13 +42,13 @@ A [CityModel](DiGi.GML.CityGML.Classes.md#DiGi.GML.CityGML.Classes.CityModel 'Di
 Converts a CityGML stream to a [CityModel](DiGi.GML.CityGML.Classes.md#DiGi.GML.CityGML.Classes.CityModel 'DiGi\.GML\.CityGML\.Classes\.CityModel') object\.
 
 ```csharp
-public static DiGi.GML.CityGML.Classes.CityModel ToGML(System.IO.Stream steam);
+public static DiGi.GML.CityGML.Classes.CityModel? ToGML(System.IO.Stream? stream);
 ```
 #### Parameters
 
-<a name='DiGi.GML.CityGML.Convert.ToGML(System.IO.Stream).steam'></a>
+<a name='DiGi.GML.CityGML.Convert.ToGML(System.IO.Stream).stream'></a>
 
-`steam` [System\.IO\.Stream](https://learn.microsoft.com/en-us/dotnet/api/system.io.stream 'System\.IO\.Stream')
+`stream` [System\.IO\.Stream](https://learn.microsoft.com/en-us/dotnet/api/system.io.stream 'System\.IO\.Stream')
 
 The input stream containing the XML data\.
 
@@ -63,7 +63,7 @@ A [CityModel](DiGi.GML.CityGML.Classes.md#DiGi.GML.CityGML.Classes.CityModel 'Di
 Converts an [System\.Xml\.XmlDocument](https://learn.microsoft.com/en-us/dotnet/api/system.xml.xmldocument 'System\.Xml\.XmlDocument') to a [CityModel](DiGi.GML.CityGML.Classes.md#DiGi.GML.CityGML.Classes.CityModel 'DiGi\.GML\.CityGML\.Classes\.CityModel') object\.
 
 ```csharp
-public static DiGi.GML.CityGML.Classes.CityModel ToGML(System.Xml.XmlDocument xmlDocument);
+public static DiGi.GML.CityGML.Classes.CityModel? ToGML(System.Xml.XmlDocument? xmlDocument);
 ```
 #### Parameters
 
@@ -95,7 +95,7 @@ Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system
 Creates a [CityModel\(this XmlNode\)](DiGi.GML.CityGML.md#DiGi.GML.CityGML.Create.CityModel(thisSystem.Xml.XmlNode) 'DiGi\.GML\.CityGML\.Create\.CityModel\(this System\.Xml\.XmlNode\)') instance from the provided [System\.Xml\.XmlNode](https://learn.microsoft.com/en-us/dotnet/api/system.xml.xmlnode 'System\.Xml\.XmlNode')\.
 
 ```csharp
-public static DiGi.GML.CityGML.Classes.CityModel CityModel(this System.Xml.XmlNode xmlNode);
+public static DiGi.GML.CityGML.Classes.CityModel? CityModel(this System.Xml.XmlNode? xmlNode);
 ```
 #### Parameters
 
